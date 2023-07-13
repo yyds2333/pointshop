@@ -1,6 +1,6 @@
 spring:
   application:
-    name: gateway
+    name: auth-server
   cloud:
     nacos:
       server-addr: 127.0.0.1:8846
@@ -15,7 +15,8 @@ spring:
         group: ${spring.cloud.nacos.discovery.group}
         prefix: ${spring.application.name}
         file-extension: yml
+        shared-configs:
+          - application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
   profiles:
     active: dev
-
 

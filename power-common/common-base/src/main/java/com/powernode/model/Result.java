@@ -33,10 +33,10 @@ public class Result<T> {
         return success("ok",null);
     }
 
-    public static <T> Result<T> failure(String msg,T data){
+    public static <T> Result<T> failure(Integer code,String msg){
         Result<T> result = new Result<>();
         result.setMsg(msg);
-        result.setData(data);
+        result.setCode(code);
         return result;
     }
 
