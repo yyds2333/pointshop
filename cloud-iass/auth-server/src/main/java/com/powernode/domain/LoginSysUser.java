@@ -14,7 +14,7 @@ import java.util.Collections;
 import java.util.Date;
 
 /**
-    * 系统用户
+    * 系统登录用户
     */
 @Data
 @TableName(value = "sys_user")
@@ -37,8 +37,8 @@ public class LoginSysUser implements Serializable, UserDetails {
     /**
      * 邮箱
      */
-    @TableField(value = "email")
-    private String email;
+//    @TableField(value = "email")
+//    private String email;
 
     /**
      * 手机号
@@ -55,14 +55,14 @@ public class LoginSysUser implements Serializable, UserDetails {
     /**
      * 创建者ID
      */
-    @TableField(value = "create_user_id")
-    private Long createUserId;
+//    @TableField(value = "create_user_id")
+//    private Long createUserId;
 
     /**
      * 创建时间
      */
-    @TableField(value = "create_time")
-    private Date createTime;
+//    @TableField(value = "create_time")
+//    private Date createTime;
 
     /**
      * 用户所在的商城Id
