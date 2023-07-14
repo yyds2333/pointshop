@@ -15,12 +15,12 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.LockedException;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
@@ -31,13 +31,13 @@ import java.io.PrintWriter;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
+
 /**
- * 1.指定身份验证的类
- * 2.配置身份验证的信息，包括登录URL，登录 成功/失败/登出 的处理程序
- * 3.密码加密处理，添加密码生成器
+ * Spring Security 5.7 之前使用的配置方法
  */
-@Configuration
-public class WebSecurityConfig{
+//@Configuration
+public class OldWebSecurityConfig extends WebSecurityConfigurerAdapter {
+
 
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
@@ -46,8 +46,8 @@ public class WebSecurityConfig{
     private UserDetailsService userDetailsService;
 
     // 定义用户的身份验证 ，完成登陆实现
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
         // 禁用跨域访问限制
         http.csrf().disable();
 
@@ -57,7 +57,7 @@ public class WebSecurityConfig{
                 .successHandler(authenticationSuccessHandler())
                 // 登录失败处理器
                 .failureHandler(authenticationFailureHandler())
-                ;
+        ;
 
         // 配置注销
         http.logout().logoutUrl(AuthConstant.LOGOUT_URL)
@@ -67,17 +67,23 @@ public class WebSecurityConfig{
         http.authorizeHttpRequests()
                 .anyRequest() // 任何请求都拦截
                 .authenticated();
-        return http.build();
     }
 
-//    @Bean
-//    public AuthenticationProvider daoAuthenticationProvider(){
-//        System.out.println("使用新式Security注册Bean");
-//        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
-//        daoAuthenticationProvider.setUserDetailsService(userDetailsService);
-//        daoAuthenticationProvider.setHideUserNotFoundExceptions(false);
-//        return daoAuthenticationProvider;
-//    }
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        System.out.println("使用老式Security继承");
+        auth.userDetailsService(userDetailsService);
+    }
+
+    @Bean
+    public AuthenticationProvider daoAuthenticationProvider(){
+        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
+        daoAuthenticationProvider.setUserDetailsService(userDetailsService);
+        daoAuthenticationProvider.setHideUserNotFoundExceptions(false);
+        return daoAuthenticationProvider;
+    }
+
+
 
     // 登陆成功，生成 token 并返回到前端
     @Bean
@@ -102,6 +108,7 @@ public class WebSecurityConfig{
             sendResponse(response,loginSuccess);
         });
     }
+
 
     // 登录失败  往容器中注册 AuthenticationFailureHandler 并实现这个函数式接口
     @Bean
@@ -149,7 +156,7 @@ public class WebSecurityConfig{
      * @param response
      * @param data
      */
-    private <T> void sendResponse(HttpServletResponse response,T data){
+    private <T> void sendResponse(HttpServletResponse response, T data){
         ObjectMapper objectMapper = new ObjectMapper();
         // 设置响应 类型 编码
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);

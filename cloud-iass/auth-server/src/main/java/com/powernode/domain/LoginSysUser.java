@@ -9,9 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Date;
+import java.util.*;
 
 /**
     * 系统登录用户
@@ -43,8 +41,8 @@ public class LoginSysUser implements Serializable, UserDetails {
     /**
      * 手机号
      */
-    @TableField(value = "mobile")
-    private String mobile;
+//    @TableField(value = "mobile")
+//    private String mobile;
 
     /**
      * 状态  0：禁用   1：正常
@@ -70,6 +68,28 @@ public class LoginSysUser implements Serializable, UserDetails {
     @TableField(value = "shop_id")
     private Long shopId;
 
+    // 用户的权限合集,不需要跟数据库中的中的列映射
+    @TableField(exist = false)
+    private Set<String> perms = new HashSet<>();
+
+    /**
+     * 取出数据库中用户的权限，拆分开赋值给perms
+     * @param myperms
+     */
+    public void setPerms(Set<String> myperms){
+        Set<String> realPerems = new HashSet<>();
+        myperms.forEach(perm->{
+            if (perm.contains(",")){
+                for (String s : perm.split(",")) {
+                    realPerems.add(s);
+                }
+            }else{
+                realPerems.add(perm);
+            }
+        });
+        this.perms = realPerems;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.emptyList();
@@ -77,21 +97,25 @@ public class LoginSysUser implements Serializable, UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return status == 1;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return status == 1;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return status == 1;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return status == 1;
     }
+
+
+
+
 }

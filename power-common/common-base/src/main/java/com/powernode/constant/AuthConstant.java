@@ -38,7 +38,7 @@ public interface AuthConstant {
     /**
      * token的过期时间 3小时
      */
-    Long TOKEN = 7200L;
+    Long TOKEN_EXPIRES_IN_TIME = 7200L;
     String ACCESS_TOKEN = "access_token";
     String EXPIRES_IN = "expires_in";
     String TYPE = "type";
@@ -51,7 +51,7 @@ public interface AuthConstant {
     /**
      * 监控地址
      */
-//    String[]
+    String[] MONITOR_URLS = {"/actuator/**","/druid/**"};
 
 
 
