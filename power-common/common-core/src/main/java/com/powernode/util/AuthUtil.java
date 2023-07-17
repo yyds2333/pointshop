@@ -31,4 +31,13 @@ public class AuthUtil {
     }
 
 
+    public static Long getSysShopId() {
+        List<String> perms = new ArrayList<>();
+        // 获取安全上下文中的角色
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 从角色信息中获取角色对象
+        LoginSysUser loginSysUser = (LoginSysUser) authentication.getPrincipal();
+        // 从loginSysUser获取店铺id
+        return loginSysUser.getShopId();
+    }
 }

@@ -48,20 +48,20 @@ public class TokenCheckFilter implements GlobalFilter, Ordered {
             return chain.filter(exchange);
         }
         // 获取请求头中的token
-        List<String> authorization = request.getHeaders().get("token");
+        List<String> authorization = request.getHeaders().get(AuthConstant.AUTHORIZATION);
         // 判断token是否存在
         if (!CollectionUtils.isEmpty(authorization)){
             // 获取token，去掉附属的标识，去掉Bear  获取真正的token值
             String authToken = authorization.get(0);
             // 用户携带了token，且在redis中没有过期，则放行
-            System.out.println("authToken的值为" + authToken);
+//            System.out.println("authToken的值为" + authToken);
             if (StringUtils.hasText(authToken)){
                 // 获取真实token
                 String realToken = authToken.replaceFirst(AuthConstant.BEARER, "");
-                System.out.println("realToken的值为" + realToken);
+//                System.out.println("realToken的值为" + realToken);
                 if (StringUtils.hasText(realToken)){
                     String token = AuthConstant.LOGIN_TOKEN_PREFIX + realToken;
-                    System.out.println(stringRedisTemplate.hasKey(AuthConstant.LOGIN_TOKEN_PREFIX + realToken));
+//                    System.out.println(stringRedisTemplate.hasKey(AuthConstant.LOGIN_TOKEN_PREFIX + realToken));
                     if (stringRedisTemplate.hasKey(AuthConstant.LOGIN_TOKEN_PREFIX + realToken)){
                         // 携带了合法的token，可以放行
                         return chain.filter(exchange);
