@@ -5,6 +5,6 @@ import com.powernode.domain.LoginSysUser;
 
 import java.util.Set;
 
-public interface SysUserMapper extends BaseMapper<LoginSysUser> {
+public interface LoginSysUserMapper extends BaseMapper<LoginSysUser> {
     Set<String> selectPermsById(Long sysUserId);
 }

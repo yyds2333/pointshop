@@ -16,4 +16,10 @@ public interface SysUserService extends IService<SysUser>{
     Page<SysUser> getUserByPage(Page<SysUser> page, SysUser sysUser);
 
     LoginSysUser getLoginUserById(Long sysUserId);
+
+    Integer deleteByIds(Long... sysUserIds);
+
+    Integer addSysUser(SysUser sysUser);
+
+    Integer updateSysUser(SysUser sysUser);
 }

@@ -1,15 +1,12 @@
 package com.powernode.controller;
 
 import com.powernode.domain.SysRole;
-import com.powernode.domain.SysUser;
 import com.powernode.model.Result;
 import com.powernode.service.SysRoleService;
-import com.powernode.service.SysUserService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;

@@ -28,6 +28,3 @@ spring:
     pathmatch:
       matching-strategy: ant_path_matcher  #MVC扫描策略，支持ANT风格的路径匹配  例如：  ？ *  /
 
-
-qiniu:
-

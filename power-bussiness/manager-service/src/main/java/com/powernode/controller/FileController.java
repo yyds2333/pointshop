@@ -3,7 +3,6 @@ package com.powernode.controller;
 import com.alibaba.fastjson.JSON;
 import com.powernode.config.FileConfig;
 import com.powernode.model.Result;
-import com.qiniu.common.QiniuException;
 import com.qiniu.http.Response;
 import com.qiniu.storage.Configuration;
 import com.qiniu.storage.Region;
@@ -18,9 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
 
 @RestController
 @Api(tags = "文件管理API接口")
@@ -34,7 +30,7 @@ public class FileController {
         // 构建一个带指定Region对象的配置类
         Configuration configuration = new Configuration(Region.huanan());
         configuration.resumableUploadAPIVersion = Configuration.ResumableUploadAPIVersion.V2;
-        UploadManager uploadManager = new UploadManager();
+        UploadManager uploadManager = new UploadManager(configuration);
         //生成上传凭证
         String accesskey = fileConfig.getAk();
         String secretKey = fileConfig.getSk();

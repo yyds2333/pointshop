@@ -35,15 +35,12 @@
 
   <!-- 子项目所需的公共包 -->
   <dependencies>
-    <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-bootstrap</artifactId>
-    </dependency>
 
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
     </dependency>
+
   </dependencies>
 
   <!-- 依赖管理 -->

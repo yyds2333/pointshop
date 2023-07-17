@@ -4,15 +4,12 @@ package com.powernode.controller;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.powernode.domain.LoginSysUser;
 import com.powernode.domain.SysUser;
-import com.powernode.mapper.SysUserMapper;
 import com.powernode.model.Result;
 import com.powernode.service.SysUserService;
 import com.powernode.util.AuthUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/sys/user")
@@ -52,7 +49,7 @@ public class SysUserController {
      */
     @DeleteMapping("/{sysUserId}")
     public Result<Integer> deleteByUserId(@PathVariable("sysUserId")Long sysUserId){
-        return Result.success("删除成功",sysUserService.removeById(sysUserId)?1:0);
+        return Result.success("删除成功",sysUserService.deleteByIds(sysUserId));
     }
 
     /**
@@ -72,7 +69,7 @@ public class SysUserController {
      */
     @PostMapping
     public Result<Integer> addSysUser(@RequestBody SysUser sysUser){
-        return Result.success("添加成功",sysUserService.save(sysUser)?1:0);
+        return Result.success("添加成功",sysUserService.addSysUser(sysUser));
     }
 
     /**
@@ -82,7 +79,7 @@ public class SysUserController {
      */
     @PutMapping
     public Result<Integer> updateSysUserById(@RequestBody SysUser sysUser){
-        return Result.success("修改成功",sysUserService.updateById(sysUser)?1:0);
+        return Result.success("修改成功",sysUserService.updateSysUser(sysUser));
     }
 
 }

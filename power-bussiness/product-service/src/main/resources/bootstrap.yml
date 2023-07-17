@@ -17,11 +17,6 @@ spring:
         file-extension: yml
         shared-configs:
           - application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
-#        extension-configs:
-#          - data-id: ext-1.yml
-#            group: A_GROUP
-#            refresh: true
-#          - data-id: ext-2.yml
   profiles:
     active: dev
   mvc:
@@ -30,12 +25,19 @@ spring:
   cache:
     type: redis # 设置spring插件缓存使用redis
 
-feign:
+#feign:
+#
+#
+#
+#seata:
 
-
-
-seata:
-
+#      shared-configs:
+#        - application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+#        extension-configs:
+#          - data-id: ext-1.yml
+#            group: A_GROUP
+#            refresh: true
+#          - data-id: ext-2.yml
 
 
 
