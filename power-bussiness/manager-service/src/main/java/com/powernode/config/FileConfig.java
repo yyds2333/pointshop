@@ -17,5 +17,6 @@ public class FileConfig {
     private String ak;
     private String sk;
     private String bucket;
+    private String domain;
 
 }
