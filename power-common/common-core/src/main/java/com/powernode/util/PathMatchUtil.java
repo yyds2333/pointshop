@@ -1,6 +1,10 @@
 package com.powernode.util;
 
 
+import org.springframework.util.AntPathMatcher;
+
+import java.util.List;
+
 public class PathMatchUtil {
     /**
      * http://localhost:8080/doLogin
@@ -16,9 +20,10 @@ public class PathMatchUtil {
      * @param uri
      * @return
      */
-    public static boolean compare(String uri){
-        for (String url:PATH) {
-            if (url.equals(uri)){
+    public static boolean compare(String[] urls, String uri){
+        AntPathMatcher matcher = new AntPathMatcher();
+        for (String url:urls) {
+            if (matcher.match(url,uri)){
                 return true;
             }
         }

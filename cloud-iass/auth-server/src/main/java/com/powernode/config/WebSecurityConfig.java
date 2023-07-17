@@ -3,8 +3,10 @@ package com.powernode.config;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.powernode.constant.AuthConstant;
+import com.powernode.domain.LoginSysUser;
 import com.powernode.model.LoginSuccess;
 import com.powernode.model.Result;
+import com.powernode.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,9 +19,12 @@ import org.springframework.security.authentication.LockedException;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -36,7 +41,8 @@ import java.util.concurrent.TimeUnit;
  * 2.配置身份验证的信息，包括登录URL，登录 成功/失败/登出 的处理程序
  * 3.密码加密处理，添加密码生成器
  */
-@Configuration
+//@Configuration
+//@EnableWebSecurity
 public class WebSecurityConfig{
 
     @Autowired
@@ -70,14 +76,22 @@ public class WebSecurityConfig{
         return http.build();
     }
 
-//    @Bean
-//    public AuthenticationProvider daoAuthenticationProvider(){
-//        System.out.println("使用新式Security注册Bean");
-//        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
-//        daoAuthenticationProvider.setUserDetailsService(userDetailsService);
-//        daoAuthenticationProvider.setHideUserNotFoundExceptions(false);
-//        return daoAuthenticationProvider;
-//    }
+    @Bean
+    public UserDetailsService userDetailsService(){
+        // 使用自己的userDetailsService实现类处理登录请求
+        System.out.println("使用LoginSysUserDetailsService处理请求");
+        return username -> userDetailsService.loadUserByUsername(username);
+    }
+
+
+    @Bean
+    public AuthenticationProvider daoAuthenticationProvider(){
+        System.out.println("使用新式Security注册Bean");
+        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
+        daoAuthenticationProvider.setUserDetailsService(userDetailsService);
+        daoAuthenticationProvider.setHideUserNotFoundExceptions(false);
+        return daoAuthenticationProvider;
+    }
 
     // 登陆成功，生成 token 并返回到前端
     @Bean

@@ -1,19 +1,31 @@
 package com.powernode.config;
 
+
+import com.alibaba.fastjson.JSON;
 import com.powernode.constant.ResourceConstant;
 import com.powernode.filter.TokenTransFilter;
+import com.powernode.model.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import java.io.PrintWriter;
+
+/**
+ * 适用于 Spring Security 5.7 之后的配置之
+ */
 // 开启方法级别权限注解
-@Configuration
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+//@Configuration
+//@EnableWebSecurity
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class ResourceServerConfig {
 
 
@@ -41,9 +53,16 @@ public class ResourceServerConfig {
     // 身份拒绝 的 处理
     @Bean
     public AccessDeniedHandler accessDeniedHandler(){
-        // 相应给前台
+        // 响应给前台
         return (((request, response, accessDeniedException) -> {
-
+            response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+            response.setCharacterEncoding("utf-8");
+            Result<String> result = Result.failure(HttpStatus.FORBIDDEN.value(),"权限不足");
+            String resultStr = JSON.toJSONString(result);
+            PrintWriter writer = response.getWriter();
+            writer.write(resultStr);
+            writer.flush();
+            writer.close();
         }));
     }
 }

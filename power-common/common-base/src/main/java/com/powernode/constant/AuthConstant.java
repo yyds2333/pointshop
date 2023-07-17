@@ -13,7 +13,7 @@ public interface AuthConstant {
     /**
      * 请求token的前缀
      */
-    String BEARER = "Bearer";
+    String BEARER = "Bearer ";
 
     /**
      *  token的请求头 key

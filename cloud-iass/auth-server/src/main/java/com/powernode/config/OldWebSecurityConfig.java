@@ -35,7 +35,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Spring Security 5.7 之前使用的配置方法
  */
-//@Configuration
+@Configuration
 public class OldWebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 

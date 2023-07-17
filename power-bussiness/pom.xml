@@ -7,6 +7,11 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <artifactId>power-bussiness</artifactId>
+    <packaging>pom</packaging>
     <name>power-bussiness</name>
     <url>http://maven.apache.org</url>
+    <modules>
+        <module>manager-service</module>
+    </modules>
+
 </project>
