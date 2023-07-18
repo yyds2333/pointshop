@@ -2,6 +2,7 @@ package com.powernode.controller;
 
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.powernode.ann.MyLog;
 import com.powernode.domain.LoginSysUser;
 import com.powernode.domain.SysUser;
 import com.powernode.model.Result;
@@ -49,7 +50,7 @@ public class SysUserController {
      */
     @DeleteMapping("/{sysUserId}")
     public Result<Integer> deleteByUserId(@PathVariable("sysUserId")Long sysUserId){
-        return Result.success("删除成功",sysUserService.deleteByIds(sysUserId));
+        return Result.success("删除成功",sysUserService.deleteById(sysUserId));
     }
 
     /**

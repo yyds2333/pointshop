@@ -22,4 +22,6 @@ public interface SysUserService extends IService<SysUser>{
     Integer addSysUser(SysUser sysUser);
 
     Integer updateSysUser(SysUser sysUser);
+
+    Integer deleteById(Long sysUserId);
 }

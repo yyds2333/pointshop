@@ -21,6 +21,7 @@ public class SysMenuController {
     private SysMenuService sysMenuService;
 
     @GetMapping("/nav")
+
     public Result<MenuAndAuthVo> getMenuAndAuth() {
         MenuAndAuthVo maa = new MenuAndAuthVo();
         List<SysMenu> menuByUserId = sysMenuService.getMenuByUserId(AuthUtil.getSysUserId());

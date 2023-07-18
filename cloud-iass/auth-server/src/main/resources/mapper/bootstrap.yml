@@ -17,11 +17,11 @@ spring:
         file-extension: yml
         shared-configs:
           - application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
-  #        extension-configs:
-  #          - data-id: ext-1.yml
-  #            group: A_GROUP
-  #            refresh: true
-  #          - data-id: ext-2.yml
+#        extension-configs:
+#          - data-id: ext-1.yml
+#            group: A_GROUP
+#            refresh: true
+#          - data-id: ext-2.yml
   profiles:
     active: dev
 

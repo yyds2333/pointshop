@@ -6,6 +6,7 @@
         <artifactId>power-bussiness</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
+
     <artifactId>manager-service</artifactId>
 
     <dependencies>

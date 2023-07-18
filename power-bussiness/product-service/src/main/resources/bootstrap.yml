@@ -25,6 +25,7 @@ spring:
   cache:
     type: redis # 设置spring插件缓存使用redis
 
+
 #feign:
 #
 #
@@ -38,7 +39,26 @@ spring:
 #            group: A_GROUP
 #            refresh: true
 #          - data-id: ext-2.yml
+feign:
+  circuitbreaker:
+    group:
+      enabled: true # 开启熔断
+  client:
+    config:
+      default:
+        connect-timeout: 30000    # 连接失败时间
+        read-timeout: 30000
 
+# seata配置
+seata:
+  enabled: true
+  tx-service-group: ${spring.application.name}
+  service:
+    grouplist:
+      default: localhost:8091
+    vgroup-mapping:
+      product-service: default
+  data-source-proxy-mode: AT
 
 
 
