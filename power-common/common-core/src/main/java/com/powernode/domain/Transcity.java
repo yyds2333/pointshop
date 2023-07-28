@@ -5,9 +5,11 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
+import java.io.Serializable;
+
 @TableName(value = "transcity")
-public class Transcity {
-    @TableId(value = "transcity_id", type = IdType.INPUT)
+public class Transcity implements Serializable {
+    @TableId(value = "transcity_id", type = IdType.AUTO)
     private Long transcityId;
 
     /**

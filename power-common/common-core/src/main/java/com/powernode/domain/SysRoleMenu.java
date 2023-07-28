@@ -5,12 +5,14 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
+import java.io.Serializable;
+
 /**
     * 角色与菜单对应关系
     */
 @TableName(value = "sys_role_menu")
-public class SysRoleMenu {
-    @TableId(value = "id", type = IdType.INPUT)
+public class SysRoleMenu  implements Serializable {
+    @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
     /**

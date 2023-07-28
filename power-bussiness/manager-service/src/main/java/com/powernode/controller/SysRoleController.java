@@ -1,5 +1,6 @@
 package com.powernode.controller;
 
+import com.powernode.ann.MyLog;
 import com.powernode.domain.SysRole;
 import com.powernode.model.Result;
 import com.powernode.service.SysRoleService;
@@ -20,6 +21,7 @@ public class SysRoleController {
     private SysRoleService sysRoleService;
 
     @GetMapping("/list")
+    @MyLog(oprate = "获取管理员列表")
     public Result<List<SysRole>> getUserDetails(){
         return Result.success("获取信息成功",sysRoleService.list());
     }

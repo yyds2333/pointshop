@@ -4,14 +4,17 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+
+import java.io.Serializable;
 import java.util.Date;
 
 @TableName(value = "branch_table")
-public class BranchTable {
+public class BranchTable  implements Serializable {
+    private static final long serialVersionUID = 1L;
     /**
      * 分支事务ID
      */
-    @TableId(value = "branch_id", type = IdType.INPUT)
+    @TableId(value = "branch_id", type = IdType.AUTO)
     private Long branchId;
 
     /**

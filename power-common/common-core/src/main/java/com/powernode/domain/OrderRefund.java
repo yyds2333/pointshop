@@ -4,15 +4,18 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
 @TableName(value = "order_refund")
-public class OrderRefund {
+public class OrderRefund  implements Serializable {
+    private static final long serialVersionUID = 1L;
     /**
      * 记录ID
      */
-    @TableId(value = "refund_id", type = IdType.INPUT)
+    @TableId(value = "refund_id", type = IdType.AUTO)
     private Long refundId;
 
     /**

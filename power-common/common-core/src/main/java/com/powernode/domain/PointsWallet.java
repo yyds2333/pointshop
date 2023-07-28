@@ -5,12 +5,15 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
+import java.io.Serializable;
+
 @TableName(value = "points_wallet")
-public class PointsWallet {
+public class PointsWallet  implements Serializable {
+    private static final long serialVersionUID = 1L;
     /**
      * 积分钱包id
      */
-    @TableId(value = "points_wallet_id", type = IdType.INPUT)
+    @TableId(value = "points_wallet_id", type = IdType.AUTO)
     private Long pointsWalletId;
 
     /**

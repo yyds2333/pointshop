@@ -1,9 +1,9 @@
 spring:
   application:
-    name: auth-server
+    name: search-service
   cloud:
     nacos:
-      server-addr: 127.0.0.1:8846
+      server-addr: localhost:8846
       username: nacos
       password: nacos
       discovery:
@@ -17,11 +17,31 @@ spring:
         file-extension: yml
         shared-configs:
           - application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
-#        extension-configs:
-#          - data-id: ext-1.yml
-#            group: A_GROUP
-#            refresh: true
-#          - data-id: ext-2.yml
   profiles:
     active: dev
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+  jackson:
+    default-property-inclusion: non_null
+
+feign:
+  circuitbreaker:
+    enabled: true #开启熔断
+  client:
+    config:
+      default:
+        connect-timeout: 30000
+        read-timeout: 30000
+
+#seata:
+#  enabled: true
+#  tx-service-group: ${spring.application.name}
+#  service:
+#    grouplist:
+#      default: locahost:8091
+#    vgroup-mapping:
+#      product-service: default
+#  data-source-proxy-mode: AT
 

@@ -16,9 +16,10 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 @TableName(value = "sys_user")
 public class SysUser implements Serializable {
-    @TableId(value = "user_id", type = IdType.INPUT)
+    @TableId(value = "user_id", type = IdType.AUTO)
     private Long userId;
 
     /**
@@ -74,15 +75,6 @@ public class SysUser implements Serializable {
      */
     @TableField(exist = false)
     private List<Long> roleIdList;
-
-
-    public void setRoleIdList(List<Long> roleIdList) {
-        this.roleIdList = roleIdList;
-    }
-
-    public List<Long> getRoleIdList() {
-        return roleIdList;
-    }
 
     private static final long serialVersionUID = 1L;
 

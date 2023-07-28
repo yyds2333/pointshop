@@ -4,14 +4,16 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+
+import java.io.Serializable;
 import java.util.Date;
 
 @TableName(value = "transport")
-public class Transport {
+public class Transport implements Serializable {
     /**
      * 运费模板id
      */
-    @TableId(value = "transport_id", type = IdType.INPUT)
+    @TableId(value = "transport_id", type = IdType.AUTO)
     private Long transportId;
 
     /**

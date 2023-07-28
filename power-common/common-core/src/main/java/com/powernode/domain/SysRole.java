@@ -4,14 +4,16 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+
+import java.io.Serializable;
 import java.util.Date;
 
 /**
     * 角色
     */
 @TableName(value = "sys_role")
-public class SysRole {
-    @TableId(value = "role_id", type = IdType.INPUT)
+public class SysRole  implements Serializable {
+    @TableId(value = "role_id", type = IdType.AUTO)
     private Long roleId;
 
     /**

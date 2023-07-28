@@ -5,12 +5,15 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
+import java.io.Serializable;
+
 /**
     * 终端信息表
     */
 @TableName(value = "oauth_client_details")
-public class OauthClientDetails {
-    @TableId(value = "client_id", type = IdType.INPUT)
+public class OauthClientDetails  implements Serializable {
+    private static final long serialVersionUID = 1L;
+    @TableId(value = "client_id", type = IdType.AUTO)
     private String clientId;
 
     @TableField(value = "client_secret")

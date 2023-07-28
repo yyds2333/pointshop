@@ -4,14 +4,16 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 @TableName(value = "transfee")
-public class Transfee {
+public class Transfee  implements Serializable {
     /**
      * 运费项id
      */
-    @TableId(value = "transfee_id", type = IdType.INPUT)
+    @TableId(value = "transfee_id", type = IdType.AUTO)
     private Long transfeeId;
 
     /**

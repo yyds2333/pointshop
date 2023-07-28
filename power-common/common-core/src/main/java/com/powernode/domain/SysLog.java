@@ -4,12 +4,15 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Builder;
+
 import java.util.Date;
 
 /**
     * 系统日志
     */
 @TableName(value = "sys_log")
+@Builder
 public class SysLog {
     @TableId(value = "id", type = IdType.INPUT)
     private Long id;

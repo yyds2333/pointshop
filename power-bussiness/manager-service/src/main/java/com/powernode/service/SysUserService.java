@@ -24,4 +24,8 @@ public interface SysUserService extends IService<SysUser>{
     Integer updateSysUser(SysUser sysUser);
 
     Integer deleteById(Long sysUserId);
+
+    SysUser getUserById(Long sysUserId);
+
+    Integer updatePassword(String password, String newPassword);
 }

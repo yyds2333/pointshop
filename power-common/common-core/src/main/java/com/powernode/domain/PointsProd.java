@@ -4,15 +4,18 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
 @TableName(value = "points_prod")
-public class PointsProd {
+public class PointsProd  implements Serializable {
+    private static final long serialVersionUID = 1L;
     /**
      * 积分商品id
      */
-    @TableId(value = "points_prod_id", type = IdType.INPUT)
+    @TableId(value = "points_prod_id", type = IdType.AUTO)
     private Long pointsProdId;
 
     /**

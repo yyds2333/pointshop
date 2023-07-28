@@ -4,14 +4,17 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+
+import java.io.Serializable;
 import java.util.Date;
 
 @TableName(value = "global_table")
-public class GlobalTable {
+public class GlobalTable  implements Serializable {
+    private static final long serialVersionUID = 1L;
     /**
      * 全局事务ID
      */
-    @TableId(value = "xid", type = IdType.INPUT)
+    @TableId(value = "xid", type = IdType.AUTO)
     private String xid;
 
     /**

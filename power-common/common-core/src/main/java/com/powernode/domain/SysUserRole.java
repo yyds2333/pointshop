@@ -5,12 +5,14 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
+import java.io.Serializable;
+
 /**
     * 用户与角色对应关系
     */
 @TableName(value = "sys_user_role")
-public class SysUserRole {
-    @TableId(value = "id", type = IdType.INPUT)
+public class SysUserRole  implements Serializable {
+    @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
     /**

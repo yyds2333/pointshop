@@ -5,12 +5,14 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
+import java.io.Serializable;
+
 @TableName(value = "prod_prop_value")
-public class ProdPropValue {
+public class ProdPropValue  implements Serializable {
     /**
      * 属性值ID
      */
-    @TableId(value = "value_id", type = IdType.INPUT)
+    @TableId(value = "value_id", type = IdType.AUTO)
     private Long valueId;
 
     /**

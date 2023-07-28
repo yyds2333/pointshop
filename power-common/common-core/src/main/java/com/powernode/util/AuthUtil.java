@@ -1,9 +1,11 @@
 package com.powernode.util;
 
+import com.powernode.domain.LoginMember;
 import com.powernode.domain.LoginSysUser;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,5 +41,23 @@ public class AuthUtil {
         LoginSysUser loginSysUser = (LoginSysUser) authentication.getPrincipal();
         // 从loginSysUser获取店铺id
         return loginSysUser.getShopId();
+    }
+
+    public static String getOpenId(){
+        // 获取安全上下文中的角色
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 从角色信息中获取角色对象
+        LoginMember loginMember = (LoginMember) authentication.getPrincipal();
+
+        return loginMember.getOpenId();
+    }
+
+    public static Integer getMemberId() {
+
+        // 获取安全上下文中的角色
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 从角色信息中获取角色对象
+        LoginMember loginMember = (LoginMember) authentication.getPrincipal();
+        return loginMember.getId();
     }
 }

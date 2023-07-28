@@ -4,17 +4,20 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+
+import java.io.Serializable;
 import java.util.Date;
 
 /**
     * 用户配送地址
     */
 @TableName(value = "member_addr")
-public class MemberAddr {
+public class MemberAddr  implements Serializable {
+    private static final long serialVersionUID = 1L;
     /**
      * ID
      */
-    @TableId(value = "addr_id", type = IdType.INPUT)
+    @TableId(value = "addr_id", type = IdType.AUTO)
     private Long addrId;
 
     /**

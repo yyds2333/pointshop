@@ -29,4 +29,25 @@
     create_time, reply_time, reply_sts, postip, score, useful_counts, pics, is_anonymous, 
     `status`, evaluate, shop_id
   </sql>
+
+  <select id="selectProdCommStatic" resultType="com.powernode.vo.ProdCommStatics">
+    select prod_id,count(*) all_count,sum(case evaluate when 0 then 1 else 0 end) good_count from prod_comm
+    where prod_id in
+      <foreach collection="prodIdList" item="prodId" open="(" separator="," close=")">
+        #{prodId}
+      </foreach>
+    group by prod_id
+    </select>
+
+  <select id="selectCommSum" resultType="com.powernode.vo.ProdCommVo">
+    select IFNULL(prod_id,#{prodId}),
+           count(evaluate) number,
+           ifnull(sum(case evaluate when 0 then 1 else 0 end),0) praiseNumber,
+           ifnull(sum(case evaluate when 1 then 1 else 0 end),0) secondaryNumber,
+           ifnull(sum(case evaluate when 2 then 1 else 0 end),0) negativeNumber,
+           count(pics) picNumber
+    from prod_comm
+    where prod_id = #{prodId}
+
+  </select>
 </mapper>

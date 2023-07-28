@@ -4,18 +4,23 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.ToString;
+
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
 /**
     * 商品
     */
+@ToString
 @TableName(value = "prod")
-public class Prod {
+public class Prod  implements Serializable {
     /**
      * 产品ID
      */
-    @TableId(value = "prod_id", type = IdType.INPUT)
+    @TableId(value = "prod_id", type = IdType.AUTO)
+
     private Long prodId;
 
     /**

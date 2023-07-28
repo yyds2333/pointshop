@@ -30,4 +30,8 @@
     category_id, sold_num, total_stocks, delivery_mode, delivery_template_id, create_time, 
     update_time, putaway_time, version
   </sql>
+
+  <update id="updateStatusById">
+    update prod set `status` = #{status} where prod_id = #{prodId}
+    </update>
 </mapper>

@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -19,8 +20,8 @@ import java.util.List;
 @NoArgsConstructor
 @ToString
 @TableName(value = "sys_menu")
-public class SysMenu {
-    @TableId(value = "menu_id", type = IdType.INPUT)
+public class SysMenu  implements Serializable {
+    @TableId(value = "menu_id", type = IdType.AUTO)
     private Long menuId;
 
     /**

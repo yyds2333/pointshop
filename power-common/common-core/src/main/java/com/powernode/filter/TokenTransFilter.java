@@ -3,6 +3,7 @@ package com.powernode.filter;
 import com.alibaba.fastjson.JSON;
 import com.powernode.constant.AuthConstant;
 import com.powernode.constant.ResourceConstant;
+import com.powernode.domain.LoginMember;
 import com.powernode.domain.LoginSysUser;
 import com.powernode.model.Result;
 import com.powernode.util.PathMatchUtil;
@@ -25,6 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashSet;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
@@ -84,9 +86,10 @@ public class TokenTransFilter extends OncePerRequestFilter {
                     // 用户是会员
                     case (AuthConstant.MEMBER): {
                         // 获取会员的身份票据
-
-                        // 构建带有权限的身份对象
-
+                        LoginMember loginMember = JSON.parseObject(authenticationToken.getPrincipal().toString(), LoginMember.class);
+                        // 会员暂时妹有其他权限，仅有默认访问范围
+                        realToken = new UsernamePasswordAuthenticationToken(loginMember,null,new HashSet<>());
+                        break;
                     }
                 }
                 // 将当前对象保存到security上下文

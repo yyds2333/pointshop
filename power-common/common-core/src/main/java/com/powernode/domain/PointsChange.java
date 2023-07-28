@@ -4,14 +4,17 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+
+import java.io.Serializable;
 import java.util.Date;
 
 @TableName(value = "points_change")
-public class PointsChange {
+public class PointsChange  implements Serializable {
+    private static final long serialVersionUID = 1L;
     /**
      * 积分流动记录表
      */
-    @TableId(value = "points_change_id", type = IdType.INPUT)
+    @TableId(value = "points_change_id", type = IdType.AUTO)
     private Long pointsChangeId;
 
     /**

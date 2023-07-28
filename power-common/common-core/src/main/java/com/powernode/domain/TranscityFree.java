@@ -5,12 +5,14 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
+import java.io.Serializable;
+
 @TableName(value = "transcity_free")
-public class TranscityFree {
+public class TranscityFree  implements Serializable {
     /**
      * 指定条件包邮城市项id
      */
-    @TableId(value = "transcity_free_id", type = IdType.INPUT)
+    @TableId(value = "transcity_free_id", type = IdType.AUTO)
     private Long transcityFreeId;
 
     /**

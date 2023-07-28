@@ -4,11 +4,14 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+
+import java.io.Serializable;
 import java.util.Date;
 
 @TableName(value = "attach_file")
-public class AttachFile {
-    @TableId(value = "file_id", type = IdType.INPUT)
+public class AttachFile  implements Serializable {
+    private static final long serialVersionUID = 1L;
+    @TableId(value = "file_id", type = IdType.AUTO)
     private Long fileId;
 
     /**

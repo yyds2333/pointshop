@@ -4,17 +4,19 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+
+import java.io.Serializable;
 import java.util.Date;
 
 /**
     * 定时任务日志
     */
 @TableName(value = "schedule_job_log")
-public class ScheduleJobLog {
+public class ScheduleJobLog  implements Serializable {
     /**
      * 任务日志id
      */
-    @TableId(value = "log_id", type = IdType.INPUT)
+    @TableId(value = "log_id", type = IdType.AUTO)
     private Long logId;
 
     /**

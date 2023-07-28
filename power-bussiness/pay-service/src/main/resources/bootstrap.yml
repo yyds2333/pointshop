@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: pay-service
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+      username: nacos
+      password: nacos
+      discovery:
+        namespace: 73ef8e5e-de2f-4ea1-99b4-b398c84d95b0
+        group: A_GROUP
+        service: ${spring.application.name}
+      config:
+        namespace: ${spring.cloud.nacos.discovery.namespace}
+        group: ${spring.cloud.nacos.discovery.group}
+        prefix: ${spring.application.name}
+        file-extension: yml
+        shared-configs:
+          - application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+  profiles:
+    active: dev
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  main:
+    allow-bean-definition-overriding: true #允许存在多个Feign调用相同的Service的接口
+
+feign:
+
+  circuitbreaker:
+    enabled: true #开启熔断
+  client:
+    config:
+      default:
+        connect-timeout: 30000
+        read-timeout: 30000

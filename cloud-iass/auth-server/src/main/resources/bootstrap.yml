@@ -25,3 +25,11 @@ spring:
   profiles:
     active: dev
 
+# 微信小程序所需的参数
+#wx:
+#  auth:
+#    app-id: wxd722f9d99f5719f0
+#    app-secret: 1055149a7d81d5354632e4559918c519
+#    wx-token-url: https://api.weixin.qq.com/sns/jscode2session?appid=%s&secret=%s&js_code=%s&grant_type=authorization_code
+
+

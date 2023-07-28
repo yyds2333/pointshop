@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: message-service
+  cloud:
+    nacos:
+      server-addr: 127.0.0.1:8846
+      username: nacos
+      password: nacos
+      discovery:
+        namespace: cb6051d5-4556-47ff-8466-bd6c0be3d598
+        group: A_GROUP
+        service: ${spring.application.name}
+      config:
+        namespace: ${spring.cloud.nacos.discovery.namespace}
+        group: ${spring.cloud.nacos.discovery.group}
+        prefix: ${spring.application.name}
+        file-extension: yml
+        shared-configs:
+          - application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+  profiles:
+    active: dev
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher  #MVC扫描策略，支持ANT风格的路径匹配  例如：  ？ *  /
+  cache:
+    type: redis # 设置spring插件缓存使用redis
+feign:
+  circuitbreaker:
+    group:
+      enabled: true # 开启熔断
+
+
+

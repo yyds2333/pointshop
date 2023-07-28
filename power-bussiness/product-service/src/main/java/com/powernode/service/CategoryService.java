@@ -9,4 +9,10 @@ public interface CategoryService extends IService<Category>{
 
 
     List<Category> loadAllCategory();
+
+    Boolean updateCateGory(Category category);
+
+    Boolean addCateGory(Category category);
+
+    List<Category> getCategoryListByStatus();
 }

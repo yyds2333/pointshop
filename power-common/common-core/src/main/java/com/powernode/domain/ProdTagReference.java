@@ -4,14 +4,16 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+
+import java.io.Serializable;
 import java.util.Date;
 
 @TableName(value = "prod_tag_reference")
-public class ProdTagReference {
+public class ProdTagReference  implements Serializable {
     /**
      * 分组引用id
      */
-    @TableId(value = "reference_id", type = IdType.INPUT)
+    @TableId(value = "reference_id", type = IdType.AUTO)
     private Long referenceId;
 
     /**

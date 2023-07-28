@@ -1,5 +1,6 @@
 package com.powernode.controller;
 
+import com.powernode.ann.MyLog;
 import com.powernode.domain.SysMenu;
 import com.powernode.model.Result;
 import com.powernode.service.SysMenuService;
@@ -21,7 +22,7 @@ public class SysMenuController {
     private SysMenuService sysMenuService;
 
     @GetMapping("/nav")
-
+    @MyLog(oprate = "获取菜单列表")
     public Result<MenuAndAuthVo> getMenuAndAuth() {
         MenuAndAuthVo maa = new MenuAndAuthVo();
         List<SysMenu> menuByUserId = sysMenuService.getMenuByUserId(AuthUtil.getSysUserId());

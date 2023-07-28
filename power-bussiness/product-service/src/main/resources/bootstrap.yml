@@ -3,7 +3,7 @@ spring:
     name: product-service
   cloud:
     nacos:
-      server-addr: 127.0.0.1:8846
+      server-addr: localhost:8846
       username: nacos
       password: nacos
       discovery:
@@ -26,28 +26,10 @@ spring:
     type: redis # 设置spring插件缓存使用redis
 
 
-#feign:
-#
-#
-#
-#seata:
-
-#      shared-configs:
-#        - application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
-#        extension-configs:
-#          - data-id: ext-1.yml
-#            group: A_GROUP
-#            refresh: true
-#          - data-id: ext-2.yml
 feign:
   circuitbreaker:
-    group:
-      enabled: true # 开启熔断
-  client:
-    config:
-      default:
-        connect-timeout: 30000    # 连接失败时间
-        read-timeout: 30000
+   enabled: true # 开启熔断
+
 
 # seata配置
 seata:

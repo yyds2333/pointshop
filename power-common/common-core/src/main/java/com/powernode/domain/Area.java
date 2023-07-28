@@ -5,9 +5,12 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
+import java.io.Serializable;
+
 @TableName(value = "area")
-public class Area {
-    @TableId(value = "area_id", type = IdType.INPUT)
+public class Area  implements Serializable {
+    private static final long serialVersionUID = 1L;
+    @TableId(value = "area_id", type = IdType.AUTO)
     private Long areaId;
 
     @TableField(value = "area_name")

@@ -4,15 +4,17 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
 @TableName(value = "shop_detail")
-public class ShopDetail {
+public class ShopDetail  implements Serializable {
     /**
      * 店铺id
      */
-    @TableId(value = "shop_id", type = IdType.INPUT)
+    @TableId(value = "shop_id", type = IdType.AUTO)
     private Long shopId;
 
     /**

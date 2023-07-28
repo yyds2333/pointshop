@@ -162,6 +162,45 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     }
 
     /**
+     * 获取用户信息并回显到前端
+     * @param sysUserId
+     * @return
+     */
+    @Override
+    public SysUser getUserById(Long sysUserId) {
+        SysUser sysUser = sysUserMapper.selectById(sysUserId);
+        // 获取当前用户角色信息
+        List<Long> sysRoleList = sysUserRoleService.getbyUserId(sysUserId);
+        // 将当前用户角色信息设置给sysUser
+        sysUser.setRoleIdList(sysRoleList);
+        return sysUser;
+    }
+
+    /**
+     * 修改密码
+     * @param password
+     * @param newPassword
+     * @return
+     */
+    @Override
+    public Integer updatePassword(String password, String newPassword) {
+        // 如果旧密码或新密码不存在，则不允许更改密码
+        if (ObjectUtils.isEmpty(password)||ObjectUtils.isEmpty(newPassword)){
+            throw new IllegalArgumentException("参数错误");
+        }
+        SysUser sysUser = sysUserMapper.selectById(AuthUtil.getSysUserId());
+        int count = 0;
+        if (!ObjectUtils.isEmpty(sysUser)){
+            // 查询当前用户,如果当前密码与传输过来的旧密码相同，则进行密码修改操作
+            if (sysUser.getPassword().equals(password)){
+                sysUser.setPassword(newPassword);
+                count = sysUserMapper.updateById(sysUser);
+            }
+        }
+        return count;
+    }
+
+    /**
      * 根据ID 批量删除角色
      *
      * @param sysUserIds

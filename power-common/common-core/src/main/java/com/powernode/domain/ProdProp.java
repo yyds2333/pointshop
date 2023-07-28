@@ -4,13 +4,27 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @TableName(value = "prod_prop")
-public class ProdProp {
+public class ProdProp  implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     /**
      * 属性id
      */
-    @TableId(value = "prop_id", type = IdType.INPUT)
+    @TableId(value = "prop_id", type = IdType.AUTO)
     private Long propId;
 
     /**
@@ -31,6 +45,9 @@ public class ProdProp {
     @TableField(value = "shop_id")
     private Long shopId;
 
+    @TableField(exist = false)
+    private List<ProdPropValue> prodPropValues = new ArrayList<>();
+
     public static final String COL_PROP_ID = "prop_id";
 
     public static final String COL_PROP_NAME = "prop_name";
@@ -39,75 +56,5 @@ public class ProdProp {
 
     public static final String COL_SHOP_ID = "shop_id";
 
-    /**
-     * 获取属性id
-     *
-     * @return prop_id - 属性id
-     */
-    public Long getPropId() {
-        return propId;
-    }
 
-    /**
-     * 设置属性id
-     *
-     * @param propId 属性id
-     */
-    public void setPropId(Long propId) {
-        this.propId = propId;
-    }
-
-    /**
-     * 获取属性名称
-     *
-     * @return prop_name - 属性名称
-     */
-    public String getPropName() {
-        return propName;
-    }
-
-    /**
-     * 设置属性名称
-     *
-     * @param propName 属性名称
-     */
-    public void setPropName(String propName) {
-        this.propName = propName;
-    }
-
-    /**
-     * 获取ProdPropRule 1:销售属性(规格); 2:参数属性;
-     *
-     * @return rule - ProdPropRule 1:销售属性(规格); 2:参数属性;
-     */
-    public Byte getRule() {
-        return rule;
-    }
-
-    /**
-     * 设置ProdPropRule 1:销售属性(规格); 2:参数属性;
-     *
-     * @param rule ProdPropRule 1:销售属性(规格); 2:参数属性;
-     */
-    public void setRule(Byte rule) {
-        this.rule = rule;
-    }
-
-    /**
-     * 获取店铺id
-     *
-     * @return shop_id - 店铺id
-     */
-    public Long getShopId() {
-        return shopId;
-    }
-
-    /**
-     * 设置店铺id
-     *
-     * @param shopId 店铺id
-     */
-    public void setShopId(Long shopId) {
-        this.shopId = shopId;
-    }
 }

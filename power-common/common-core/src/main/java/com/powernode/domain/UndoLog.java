@@ -4,11 +4,13 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+
+import java.io.Serializable;
 import java.util.Date;
 
 @TableName(value = "undo_log")
-public class UndoLog {
-    @TableId(value = "id", type = IdType.INPUT)
+public class UndoLog  implements Serializable {
+    @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
     @TableField(value = "branch_id")

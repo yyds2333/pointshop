@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -11,11 +13,11 @@ import java.util.Date;
     * 单品SKU表
     */
 @TableName(value = "sku")
-public class Sku {
+public class Sku  implements Serializable {
     /**
      * 单品ID
      */
-    @TableId(value = "sku_id", type = IdType.INPUT)
+    @TableId(value = "sku_id", type = IdType.AUTO)
     private Long skuId;
 
     /**

@@ -4,17 +4,21 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+
+import java.io.Serializable;
 import java.util.Date;
 
 /**
     * 热搜
     */
 @TableName(value = "hot_search")
-public class HotSearch {
+public class HotSearch  implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     /**
      * 主键
      */
-    @TableId(value = "hot_search_id", type = IdType.INPUT)
+    @TableId(value = "hot_search_id", type = IdType.AUTO)
     private Long hotSearchId;
 
     /**

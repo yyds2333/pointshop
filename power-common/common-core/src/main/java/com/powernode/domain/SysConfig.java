@@ -5,12 +5,14 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
+import java.io.Serializable;
+
 /**
     * 系统配置信息表
     */
 @TableName(value = "sys_config")
-public class SysConfig {
-    @TableId(value = "id", type = IdType.INPUT)
+public class SysConfig  implements Serializable {
+    @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
     /**
